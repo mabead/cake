@@ -2,7 +2,10 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 // ReSharper disable once CheckNamespace
+using Cake.Core;
+
 namespace Cake.Frosting
 {
     /// <summary>
@@ -14,6 +17,6 @@ namespace Cake.Frosting
         /// Runs the configured Cake host.
         /// </summary>
         /// <returns>An exit code indicating success or failure.</returns>
-        int Run();
+        int Run(Action<ICakeEngine> setupEngine = null);
     }
 }

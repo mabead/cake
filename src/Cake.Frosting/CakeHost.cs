@@ -72,7 +72,7 @@ namespace Cake.Frosting
             _taskLifetime = taskLifetime;
         }
 
-        public int Run()
+        public int Run(Action<ICakeEngine> setupEngine = null)
         {
             try
             {
@@ -95,6 +95,11 @@ namespace Cake.Frosting
 
                 // Initialize the engine and register everything.
                 _engineInitializer.Initialize(_engine, _context, _tasks, _lifetime, _taskLifetime);
+
+                if (setupEngine != null)
+                {
+                    setupEngine(_engine);
+                }
 
                 // Get the command and execute.
                 var command = _commandFactory.GetCommand(_options);

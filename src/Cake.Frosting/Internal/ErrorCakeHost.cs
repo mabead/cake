@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Frosting.Internal.Diagnostics;
 
@@ -24,7 +25,7 @@ namespace Cake.Frosting.Internal
             _exception = exception;
         }
 
-        public int Run()
+        public int Run(Action<ICakeEngine> setupEngine)
         {
             ErrorHandler.OutputError(_log, _exception);
             return ErrorHandler.GetExitCode(_exception);
